@@ -1,21 +1,23 @@
-let state = {count: 0};
+let state;
  
-function changeState(state, action){
+function changeState(state = { count: 0 }, action) {
     switch (action.type) {
+ 
       case 'INCREASE_COUNT':
-        return {count: state.count + 1}
+        return { count: state.count + 1 }
+ 
       default:
         return state;
     }
   }
  
-function render(){
-    document.body.textContent = state.count
-}
- 
-function dispatch(action){
+  function dispatch(action){
   state = changeState(state, action)
   render()
 }
  
-render()
+function render(){
+  document.body.textContent = state.count
+}
+ 
+dispatch({type: '@@INIT'}) //Display 0 when first loads
